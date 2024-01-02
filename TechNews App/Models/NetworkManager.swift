@@ -7,9 +7,9 @@
 
 import Foundation
 
-class NetworkManager {
+class NetworkManager: ObservableObject {
     
-    var posts = [Post]()
+    @Published var posts = [Post]()
     
     func fetchData() {
         if let url = URL(string: "https://hn.algolia.com/api/v1/search?tags=front_page") {
@@ -29,6 +29,7 @@ class NetworkManager {
                     }
                 }
             }
+            task.resume()
         }
     }
 }
